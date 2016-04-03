@@ -26,7 +26,8 @@ import com.example.user.timerapplication.util.MilsToReadableFormat;
  * Use the {@link TimerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TimerFragment extends Fragment implements CountDownTimerPausable.Listener {
+public class TimerFragment extends Fragment
+        implements CountDownTimerPausable.Listener, HourMinitePickerDialog.Listener{
 
     final private String TAG = TimerFragment.class.getSimpleName();
     final private long COUNTDONW_INTERVAL_MIL = 100;
@@ -48,7 +49,6 @@ public class TimerFragment extends Fragment implements CountDownTimerPausable.Li
         super.onCreate(savedInstanceState);
         countDownTimerPausable = new CountDownTimerPausable();
         countDownTimerPausable.setListener(this);
-        countDownTimerPausable.init(3700*1000, COUNTDONW_INTERVAL_MIL);
 
     }
 
@@ -78,7 +78,6 @@ public class TimerFragment extends Fragment implements CountDownTimerPausable.Li
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 countDownTimerPausable.start();
             }
         });
@@ -111,6 +110,7 @@ public class TimerFragment extends Fragment implements CountDownTimerPausable.Li
             @Override
             public void onClick(View v) {
                 final HourMinitePickerDialog d = new HourMinitePickerDialog(getActivity());
+                d.setListener(TimerFragment.this);
                 d.build();
             }
         });
@@ -130,11 +130,16 @@ public class TimerFragment extends Fragment implements CountDownTimerPausable.Li
     public void CountDownTimerTick(long milsUntilFinished) {
         //Log.v(TAG, "remain >> " + milsUntilFinished);
         timerDisp.setText(MilsToReadableFormat.format(milsUntilFinished));
-
     }
 
     @Override
     public void CountDownTimerFinish() {
         timerDisp.setText(MilsToReadableFormat.format(0));
+    }
+
+    @Override
+    public void onPositiveClicked(long mils) {
+        timerDisp.setText(MilsToReadableFormat.format(mils));
+        countDownTimerPausable.init(mils, COUNTDONW_INTERVAL_MIL);
     }
 }

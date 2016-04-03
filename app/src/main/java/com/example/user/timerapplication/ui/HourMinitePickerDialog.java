@@ -5,19 +5,33 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
 import com.example.user.timerapplication.R;
+import com.example.user.timerapplication.util.CountDownTimerPausable;
+
+import java.text.StringCharacterIterator;
 
 /**
  * Created by user on 16/04/03.
  */
 public class HourMinitePickerDialog {
 
+    final private String TAG = HourMinitePickerDialog.class.getSimpleName();
     final private Activity activity;
+//    final private Context context;
+
+    private NumberPicker picker1;
+    private NumberPicker picker2;
+    private NumberPicker picker3;
+    private NumberPicker picker4;
+    private Listener listener;
+
+    private long configuredValue = 0;
 
     public HourMinitePickerDialog(Activity activity){
         this.activity = activity;
@@ -33,7 +47,11 @@ public class HourMinitePickerDialog {
         builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                configuredValue
+                        = ((picker1.getValue() * 10 + picker2.getValue()) * 60
+                        + (picker3.getValue() * 10 + picker4.getValue())) * 1000;
+                Log.v(TAG, "value : " + configuredValue);
+                listener.onPositiveClicked(configuredValue);
             }
         });
 
@@ -51,10 +69,10 @@ public class HourMinitePickerDialog {
     }
 
     private void initNumberPickers(View v){
-        final NumberPicker picker1 = (NumberPicker) v.findViewById(R.id.numberPicker);
-        final NumberPicker picker2 = (NumberPicker) v.findViewById(R.id.numberPicker2);
-        final NumberPicker picker3 = (NumberPicker) v.findViewById(R.id.numberPicker3);
-        final NumberPicker picker4 = (NumberPicker) v.findViewById(R.id.numberPicker4);
+        picker1 = (NumberPicker) v.findViewById(R.id.numberPicker);
+        picker2 = (NumberPicker) v.findViewById(R.id.numberPicker2);
+        picker3 = (NumberPicker) v.findViewById(R.id.numberPicker3);
+        picker4 = (NumberPicker) v.findViewById(R.id.numberPicker4);
 
         picker1.setMaxValue(9);
         picker1.setMinValue(0);
@@ -64,6 +82,12 @@ public class HourMinitePickerDialog {
         picker3.setMinValue(0);
         picker4.setMaxValue(5);
         picker4.setMinValue(0);
+    }
 
+    public void setListener(Listener listener){
+        this.listener = listener;
+    }
+    public interface Listener {
+        void onPositiveClicked(long mils);
     }
 }

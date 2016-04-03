@@ -18,6 +18,8 @@ public class CountDownTimerPausable {
     private boolean isRunning = false;
 
     public void init(long remainingMils, long countDownInterval){
+        stop();
+
         this.remainingMils = remainingMils;
         this.countDownInterval = countDownInterval;
     }
