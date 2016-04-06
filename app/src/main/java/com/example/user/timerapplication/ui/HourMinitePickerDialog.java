@@ -74,13 +74,13 @@ public class HourMinitePickerDialog {
         picker3 = (NumberPicker) v.findViewById(R.id.numberPicker3);
         picker4 = (NumberPicker) v.findViewById(R.id.numberPicker4);
 
-        picker1.setMaxValue(9);
+        picker1.setMaxValue(5);
         picker1.setMinValue(0);
         picker2.setMaxValue(9);
         picker2.setMinValue(0);
         picker3.setMaxValue(5);
         picker3.setMinValue(0);
-        picker4.setMaxValue(5);
+        picker4.setMaxValue(9);
         picker4.setMinValue(0);
     }
 

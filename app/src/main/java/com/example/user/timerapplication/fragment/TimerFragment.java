@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.design.widget.FloatingActionButton;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -128,7 +127,6 @@ public class TimerFragment extends Fragment
 
     @Override
     public void CountDownTimerTick(long milsUntilFinished) {
-        //Log.v(TAG, "remain >> " + milsUntilFinished);
         timerDisp.setText(MilsToReadableFormat.format(milsUntilFinished));
     }
 
