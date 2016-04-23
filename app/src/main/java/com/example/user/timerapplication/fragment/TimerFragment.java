@@ -1,11 +1,8 @@
 package com.example.user.timerapplication.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +10,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.user.timerapplication.R;
-import com.example.user.timerapplication.ui.HourMinitePickerDialog;
+import com.example.user.timerapplication.ui.HourMinutePickerDialog;
 import com.example.user.timerapplication.util.CountDownTimerPausable;
 import com.example.user.timerapplication.util.MilsToReadableFormat;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TimerFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
  * Use the {@link TimerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class TimerFragment extends Fragment
-        implements CountDownTimerPausable.Listener, HourMinitePickerDialog.Listener{
+        implements CountDownTimerPausable.Listener, HourMinutePickerDialog.Listener{
 
     final private String TAG = TimerFragment.class.getSimpleName();
     final private long COUNTDONW_INTERVAL_MIL = 100;
@@ -39,8 +33,8 @@ public class TimerFragment extends Fragment
     }
 
     public static TimerFragment newInstance() {
-        TimerFragment fragment = new TimerFragment();
-        return fragment;
+        return new TimerFragment();
+
     }
 
     @Override
@@ -108,7 +102,7 @@ public class TimerFragment extends Fragment
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final HourMinitePickerDialog d = new HourMinitePickerDialog(getActivity());
+                final HourMinutePickerDialog d = new HourMinutePickerDialog(getActivity());
                 d.setListener(TimerFragment.this);
                 d.build();
             }

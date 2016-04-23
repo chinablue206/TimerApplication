@@ -17,12 +17,21 @@ public class CountDownTimerPausable {
     private long countDownInterval;
     private boolean isRunning = false;
 
+    /**
+     * Initialize the class instance, need to set timer value and interval
+     * @param remainingMils miliseconds to fire the timer
+     * @param countDownInterval interval of the countdown timer
+     */
     public void init(long remainingMils, long countDownInterval){
         stop();
 
         this.remainingMils = remainingMils;
         this.countDownInterval = countDownInterval;
     }
+
+    /**
+     * starts the timer
+     */
 
     public synchronized void start() {
         if(isRunning) {
@@ -49,12 +58,19 @@ public class CountDownTimerPausable {
         isRunning = true;
     }
 
+    /**
+     * pauses the timer.
+     */
     public void pause () {
         stop();
     }
 
+    /**
+     * stops the timer
+     */
+
     public synchronized void stop () {
-        if(isRunning == false) {
+        if(!isRunning) {
             return;
         }
         countDownTimer.cancel();

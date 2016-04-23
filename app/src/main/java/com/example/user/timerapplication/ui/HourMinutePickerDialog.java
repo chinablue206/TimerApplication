@@ -1,9 +1,7 @@
 package com.example.user.timerapplication.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,16 +10,13 @@ import android.view.ViewGroup;
 import android.widget.NumberPicker;
 
 import com.example.user.timerapplication.R;
-import com.example.user.timerapplication.util.CountDownTimerPausable;
-
-import java.text.StringCharacterIterator;
 
 /**
- * Created by user on 16/04/03.
+ *
  */
-public class HourMinitePickerDialog {
+public class HourMinutePickerDialog {
 
-    final private String TAG = HourMinitePickerDialog.class.getSimpleName();
+    final private String TAG = HourMinutePickerDialog.class.getSimpleName();
     final private Activity activity;
 //    final private Context context;
 
@@ -33,7 +28,7 @@ public class HourMinitePickerDialog {
 
     private long configuredValue = 0;
 
-    public HourMinitePickerDialog(Activity activity){
+    public HourMinutePickerDialog(Activity activity){
         this.activity = activity;
     }
 
@@ -60,12 +55,10 @@ public class HourMinitePickerDialog {
     }
 
     private View getCustomView(){
-        final LayoutInflater inflater
-                = (LayoutInflater) LayoutInflater.from(activity);
-        View v = inflater.inflate(R.layout.timer_setting,
-                (ViewGroup)activity.findViewById(R.id.timerSetting));
-        return v;
-
+        return LayoutInflater
+                .from(activity)
+                .inflate(R.layout.timer_setting,
+                        (ViewGroup)activity.findViewById(R.id.timerSetting));
     }
 
     private void initNumberPickers(View v){
