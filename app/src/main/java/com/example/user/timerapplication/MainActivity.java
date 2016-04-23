@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FragmentManager fm = getSupportFragmentManager();
-        TimerFragment timerFrag = TimerFragment.newInstance();
-
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container, timerFrag).commit();
+        if(savedInstanceState == null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container,
+                    TimerFragment.newInstance()).commit();
+        }
     }
 
 

@@ -12,4 +12,5 @@
 
     <string name="dialog_setting"> Timer Setting </string>
     <string name="dialog_ok"> OK </string>
+    <string name="default_timer" translatable="false"> 00:00:00.0 </string>
 </resources>
