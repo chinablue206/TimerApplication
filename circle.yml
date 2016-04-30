@@ -5,7 +5,7 @@ machine:
     ANDROID_HOME: /usr/local/android-sdk-linux
 dependencies:
   override:
-    - echo y | android update sdk --no-ui --filter "android-23,build-tools-23.0.3"
+    - echo y | android update sdk --no-ui --all --filter "android-23,build-tools-23.0.3"
     - chmod +x gradlew
 
     
