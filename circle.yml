@@ -10,4 +10,9 @@ dependencies:
 test:
   override:
     - echo "Nothing to do here"
-    
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - ./gradlew assembleRelease
